@@ -2142,7 +2142,7 @@ by heat or interference.  This can make calculating the probe's z-offset
 challenging, particularly at different bed temperatures.  As such, some
 printers use an endstop for homing the Z axis and a probe for calibrating the
 mesh. In this configuration it is possible offset the mesh so that the (X, Y)
-<code>reference position</code> applies zero adjustment.  The <code>reference postion</code> should
+<code>reference position</code> applies zero adjustment.  The <code>reference position</code> should
 be the location on the bed where a
 <a href="Manual_Level.html#calibrating-a-z-endstop">Z_ENDSTOP_CALIBRATE</a>
 paper test is performed.  The bed_mesh module provides the
@@ -2338,7 +2338,8 @@ be applied to changes in direction.</p>
 <em>Default Adaptive: 0</em> <br>
 <em>Default Adaptive Margin: 0</em></p>
 <p>Initiates the probing procedure for Bed Mesh Calibration.</p>
-<p>The mesh will be saved into a profile specified by the <code>PROFILE</code> parameter,
+<p>The mesh will be immediately ready to use when the command completes and saved
+into a profile specified by the <code>PROFILE</code> parameter,
 or <code>default</code> if unspecified. The <code>METHOD</code> parameter takes one of the following
 values:</p>
 <ul>
@@ -2395,6 +2396,9 @@ allowing the user to determine when a profile is loaded.  If a user wishes to
 load the <code>default</code> profile it is recommended to add
 <code>BED_MESH_PROFILE LOAD=default</code> to either their <code>START_PRINT</code> macro or their
 slicer's "Start G-Code" configuration, whichever is applicable.</p>
+<p>Note that this is not required if a new mesh is generated with
+<code>BED_MESH_CALIBRATE</code> in the <code>START_PRINT</code> macro or the slicer's "Start G-Code"
+and may produce unexpected results, especially with adaptive meshing.</p>
 <p>Alternatively the old behavior of loading a profile at startup can be
 restored with a <code>[delayed_gcode]</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[delayed_gcode bed_mesh_init]</span>
